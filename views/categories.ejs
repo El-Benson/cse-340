@@ -1,0 +1,43 @@
+<%- include("partials/header") %>
+
+<section class="page-header">
+  <div>
+    <span class="eyebrow">SERVICE CATEGORIES</span>
+
+    <h1>Browse Service Categories</h1>
+
+    <p>
+      Explore service opportunities by community need
+      and interest.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="category-grid">
+
+    <% categories.forEach((category, index) => { %>
+
+      <article class="category-card">
+
+        <span class="category-number">
+          0<%= index + 1 %>
+        </span>
+
+        <h2>
+          <%= category %>
+        </h2>
+
+        <p>
+          Explore service projects in the
+          <%= category.toLowerCase() %> category.
+        </p>
+
+      </article>
+
+    <% }) %>
+
+  </div>
+</section>
+
+<%- include("partials/footer") %>

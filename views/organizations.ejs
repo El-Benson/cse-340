@@ -1,0 +1,45 @@
+<%- include("partials/header") %>
+
+<section class="page-header">
+  <div>
+    <span class="eyebrow">SERVICE ORGANIZATIONS</span>
+
+    <h1>Organizations Making a Difference</h1>
+
+    <p>
+      Discover organizations working to support communities,
+      education, environmental awareness, and meaningful service.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="card-grid">
+
+    <% organizations.forEach((organization) => { %>
+
+      <article class="organization-card">
+
+        <div class="organization-image">
+          <img
+            src="<%= organization.image %>"
+            alt="<%= organization.name %>"
+          >
+        </div>
+
+        <div class="organization-content">
+          <h2><%= organization.name %></h2>
+
+          <p>
+            <%= organization.description %>
+          </p>
+        </div>
+
+      </article>
+
+    <% }) %>
+
+  </div>
+</section>
+
+<%- include("partials/footer") %>
