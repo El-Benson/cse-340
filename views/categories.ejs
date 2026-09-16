@@ -4,38 +4,47 @@
   <div>
     <span class="eyebrow">SERVICE CATEGORIES</span>
 
-    <h1>Browse Service Categories</h1>
+```
+<h1>Explore Project Categories</h1>
 
-    <p>
-      Explore service opportunities by community need
-      and interest.
-    </p>
+<p>
+  Browse the different categories of service projects available through
+  our partner organizations.
+</p>
+```
+
   </div>
 </section>
 
 <section class="section">
-  <div class="category-grid">
+  <div class="card-grid">
 
-    <% categories.forEach((category, index) => { %>
+```
+<% categories.forEach((category) => { %>
 
-      <article class="category-card">
+  <article class="category-card">
 
-        <span class="category-number">
-          0<%= index + 1 %>
-        </span>
+    <div class="category-content">
 
-        <h2>
-          <%= category %>
-        </h2>
+      <span class="eyebrow">
+        CATEGORY
+      </span>
 
-        <p>
-          Explore service projects in the
-          <%= category.toLowerCase() %> category.
-        </p>
+      <h2>
+        <%= category.name %>
+      </h2>
 
-      </article>
+      <p>
+        Explore service projects in the
+        <%= category.name.toLowerCase() %> category.
+      </p>
 
-    <% }) %>
+    </div>
+
+  </article>
+
+<% }) %>
+```
 
   </div>
 </section>

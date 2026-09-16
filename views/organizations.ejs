@@ -7,8 +7,8 @@
     <h1>Organizations Making a Difference</h1>
 
     <p>
-      Discover organizations working to support communities,
-      education, environmental awareness, and meaningful service.
+      Discover organizations working to support communities, education,
+      environmental awareness, and meaningful service.
     </p>
   </div>
 </section>
@@ -22,17 +22,28 @@
 
         <div class="organization-image">
           <img
-            src="<%= organization.image %>"
-            alt="<%= organization.name %>"
+            src="/images/<%= organization.logo_filename %>"
+            alt="<%= organization.name %> logo"
           >
         </div>
 
         <div class="organization-content">
-          <h2><%= organization.name %></h2>
+
+          <span class="eyebrow">PARTNER ORGANIZATION</span>
+
+          <h2>
+            <%= organization.name %>
+          </h2>
 
           <p>
             <%= organization.description %>
           </p>
+
+          <p>
+            <strong>Contact:</strong>
+            <%= organization.contact_email %>
+          </p>
+
         </div>
 
       </article>

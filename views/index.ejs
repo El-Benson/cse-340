@@ -1,129 +1,100 @@
 <%- include("partials/header") %>
 
-<% if (typeof notFound !== "undefined" && notFound) { %>
+<section class="hero">
+  <div class="hero-content">
+    ```
+    <span class="eyebrow">SERVICE PROJECT HUB</span>
 
-  <section class="error-page">
-    <div class="error-content">
-      <span class="eyebrow">404 ERROR</span>
+    <h1>Connect With Meaningful Service Opportunities</h1>
 
-      <h1>Page Not Found</h1>
+    <p>
+      Explore service projects, discover organizations, and find opportunities
+      to make a positive difference in your community.
+    </p>
 
-      <p>
-        Sorry, the page you are looking for does not exist.
-        Please return to the home page and try again.
-      </p>
+    <div class="hero-buttons">
+      <a href="/projects" class="button button-primary"> Explore Projects </a>
 
-      <a class="button" href="/">
-        Return Home
+      <a href="/organizations" class="button button-secondary">
+        View Organizations
       </a>
     </div>
-  </section>
+    ```
+  </div>
+</section>
 
-<% } else { %>
+<section class="section">
+  <div class="section-heading">
+    <span class="eyebrow">EXPLORE</span>
 
-  <section class="hero">
-    <div class="hero-content">
-      <span class="eyebrow">SERVICE PROJECT HUB</span>
+    ```
+    <h2>Find the Right Service Opportunity</h2>
 
-      <h1>Connecting people with meaningful service projects.</h1>
+    <p>
+      Browse our service projects and partner organizations to learn more about
+      the opportunities available.
+    </p>
+    ```
+  </div>
 
-      <p>
-        Discover organizations, explore service opportunities,
-        and find projects that make a positive difference in
-        communities.
-      </p>
+  <div class="card-grid">
+    ```
+    <article class="home-card">
+      <div class="home-card-icon">01</div>
 
-      <div class="hero-actions">
-        <a class="button" href="/projects">
-          Explore Projects
-        </a>
-
-        <a class="button button-secondary" href="/organizations">
-          View Organizations
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-heading">
-      <span class="eyebrow">WHAT WE OFFER</span>
-
-      <h2>Explore Service Opportunities</h2>
+      <h2>Organizations</h2>
 
       <p>
-        Use the site to discover organizations and service
-        projects based on different community needs.
+        Learn about organizations that provide meaningful service opportunities
+        and support communities.
       </p>
-    </div>
 
-    <div class="card-grid three-columns">
+      <a href="/organizations">View Organizations →</a>
+    </article>
 
-      <article class="info-card">
-        <div class="card-icon">01</div>
+    <article class="home-card">
+      <div class="home-card-icon">02</div>
 
-        <h3>Organizations</h3>
-
-        <p>
-          Learn about organizations that provide meaningful
-          opportunities for volunteers and communities.
-        </p>
-
-        <a href="/organizations" class="text-link">
-          View organizations →
-        </a>
-      </article>
-
-      <article class="info-card">
-        <div class="card-icon">02</div>
-
-        <h3>Projects</h3>
-
-        <p>
-          Explore service projects designed to address
-          environmental, educational, and community needs.
-        </p>
-
-        <a href="/projects" class="text-link">
-          View projects →
-        </a>
-      </article>
-
-      <article class="info-card">
-        <div class="card-icon">03</div>
-
-        <h3>Categories</h3>
-
-        <p>
-          Browse service opportunities by category to find
-          projects that match your interests.
-        </p>
-
-        <a href="/categories" class="text-link">
-          View categories →
-        </a>
-      </article>
-
-    </div>
-  </section>
-
-  <section class="callout">
-    <div>
-      <span class="eyebrow">MAKE A DIFFERENCE</span>
-
-      <h2>Every service project starts with an opportunity to help.</h2>
+      <h2>Projects</h2>
 
       <p>
-        Explore the available projects and discover ways
-        organizations and volunteers can work together.
+        Explore available service projects and discover ways to contribute your
+        time and skills.
       </p>
-    </div>
 
-    <a class="button" href="/categories">
-      Browse Categories
-    </a>
-  </section>
+      <a href="/projects">Explore Projects →</a>
+    </article>
 
-<% } %>
+    <article class="home-card">
+      <div class="home-card-icon">03</div>
+
+      <h2>Categories</h2>
+
+      <p>
+        Browse projects by category to quickly find areas of service that
+        interest you.
+      </p>
+
+      <a href="/categories">Browse Categories →</a>
+    </article>
+    ```
+  </div>
+</section>
+
+<section class="home-highlight">
+  <div class="highlight-content">
+    ```
+    <span class="eyebrow">OUR PURPOSE</span>
+
+    <h2>Service Starts With Opportunity</h2>
+
+    <p>
+      The Service Project Hub brings organizations and service opportunities
+      together in one simple place, making it easier to discover projects and
+      connect with meaningful community work.
+    </p>
+    ```
+  </div>
+</section>
 
 <%- include("partials/footer") %>

@@ -1,7 +1,10 @@
+import "dotenv/config";
 import express from "express";
-import dotenv from "dotenv";
 
-dotenv.config();
+import { getAllOrganizations } from "./src/models/organizations.js";
+import { getAllProjects } from "./src/models/projects.js";
+import { getAllCategories } from "./src/models/categories.js";
+import { testConnection } from "./src/models/db.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -11,6 +14,10 @@ app.set("views", "./views");
 
 app.use(express.static("public"));
 
+// ============================================
+// HOME
+// ============================================
+
 app.get("/", async (req, res) => {
   const title = "Home";
 
@@ -19,87 +26,78 @@ app.get("/", async (req, res) => {
   });
 });
 
+// ============================================
+// ORGANIZATIONS
+// ============================================
+
 app.get("/organizations", async (req, res) => {
-  const title = "Organizations";
+  try {
+    const organizations = await getAllOrganizations();
+    const title = "Our Partner Organizations";
 
-  const organizations = [
-    {
-      name: "Community Hope Center",
-      description:
-        "A community organization focused on supporting families, education, and local development.",
-      image: "/images/community.svg",
-    },
-    {
-      name: "Bright Future Initiative",
-      description:
-        "An organization that supports educational opportunities and youth development.",
-      image: "/images/education.svg",
-    },
-    {
-      name: "Green Earth Project",
-      description:
-        "A community initiative dedicated to environmental awareness and sustainable practices.",
-      image: "/images/environment.svg",
-    },
-  ];
+    res.render("organizations", {
+      title,
+      organizations,
+    });
+  } catch (error) {
+    console.error("Error retrieving organizations:", error);
 
-  res.render("organizations", {
-    title,
-    organizations,
-  });
+    res.status(500).render("index", {
+      title: "Server Error",
+      error: "Unable to retrieve organizations.",
+    });
+  }
 });
+
+// ============================================
+// PROJECTS
+// ============================================
 
 app.get("/projects", async (req, res) => {
-  const title = "Service Projects";
+  try {
+    const projects = await getAllProjects();
+    const title = "Service Projects";
 
-  const projects = [
-    {
-      name: "Community Clean-Up",
-      category: "Environmental",
-      description:
-        "A volunteer project focused on cleaning public spaces and improving the local environment.",
-    },
-    {
-      name: "Youth Learning Program",
-      category: "Educational",
-      description:
-        "A service project that provides learning support and educational resources for young people.",
-    },
-    {
-      name: "Community Food Support",
-      category: "Community Service",
-      description:
-        "A project designed to provide practical assistance and resources to community members.",
-    },
-    {
-      name: "Healthy Community Outreach",
-      category: "Health and Wellness",
-      description:
-        "A project promoting healthy lifestyles and community wellness awareness.",
-    },
-  ];
+    res.render("projects", {
+      title,
+      projects,
+    });
+  } catch (error) {
+    console.error("Error retrieving projects:", error);
 
-  res.render("projects", {
-    title,
-    projects,
-  });
+    res.status(500).render("index", {
+      title: "Server Error",
+      error: "Unable to retrieve projects.",
+    });
+  }
 });
+
+// ============================================
+// CATEGORIES
+// ============================================
 
 app.get("/categories", async (req, res) => {
-  const title = "Categories";
+  try {
+    const categories = await getAllCategories();
+    const title = "Categories";
 
-  const categories = [
-    "Environmental",
-    "Educational",
-    "Community Service",
-    "Health and Wellness",
-  ];
+    res.render("categories", {
+      title,
+      categories,
+    });
+  } catch (error) {
+    console.error("Error retrieving categories:", error);
 
-  res.render("categories", {
-    title,
-    categories,
-  });
+    res.status(500).render("index", {
+      title: "Server Error",
+      error: "Unable to retrieve categories.",
+    });
+  }
 });
+
+// ============================================
+// 404 PAGE
+// ============================================
 
 app.use(async (req, res) => {
   const title = "Page Not Found";
@@ -110,8 +108,20 @@ app.use(async (req, res) => {
   });
 });
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+// ============================================
+// START SERVER
+// ============================================
+
+app.listen(port, async () => {
+  try {
+    await testConnection();
+
+    console.log(`Server running on port ${port}`);
+    console.log("Database connection successful.");
+  } catch (error) {
+    console.error("Database connection failed:", error.message);
+    console.log(`Server running on port ${port}`);
+  }
 });
 
 console.log("CSE 340 server file has started.");
