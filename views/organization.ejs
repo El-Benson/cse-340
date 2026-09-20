@@ -2,18 +2,52 @@
 
 <section class="page-header">
   <div>
-    <span class="eyebrow">SERVICE PROJECTS</span>
+    <span class="eyebrow">PARTNER ORGANIZATION</span>
 
-    <h1>Upcoming Service Projects</h1>
+    <h1><%= organization.name %></h1>
 
     <p>
-      Discover upcoming service projects provided by organizations
-      serving their communities.
+      <%= organization.description %>
     </p>
   </div>
 </section>
 
 <section class="section">
+
+  <article class="organization-card">
+
+    <div class="organization-image">
+      <img
+        src="/images/<%= organization.logo_filename %>"
+        alt="<%= organization.name %> logo"
+      >
+    </div>
+
+    <div class="organization-content">
+
+      <h2>Organization Information</h2>
+
+      <p>
+        <strong>Contact:</strong>
+        <%= organization.contact_email %>
+      </p>
+
+    </div>
+
+  </article>
+
+</section>
+
+<section class="section">
+
+  <div class="page-header">
+    <div>
+      <span class="eyebrow">SERVICE PROJECTS</span>
+
+      <h2>Projects by <%= organization.name %></h2>
+    </div>
+  </div>
+
   <div class="project-list">
 
     <% if (projects.length > 0) { %>
@@ -22,17 +56,13 @@
 
         <article class="project-card">
 
-          <div class="project-category">
-            SERVICE PROJECT
-          </div>
-
           <div class="project-content">
 
-            <h2>
+            <h3>
               <a href="/project/<%= project.project_id %>">
                 <%= project.title %>
               </a>
-            </h2>
+            </h3>
 
             <p>
               <%= project.description %>
@@ -48,13 +78,6 @@
               <%= project.location %>
             </p>
 
-            <p>
-              <strong>Organization:</strong>
-              <a href="/organization/<%= project.organization_id %>">
-                <%= project.organization_name %>
-              </a>
-            </p>
-
           </div>
 
         </article>
@@ -64,12 +87,13 @@
     <% } else { %>
 
       <p>
-        No upcoming service projects are currently available.
+        No service projects are currently listed for this organization.
       </p>
 
     <% } %>
 
   </div>
+
 </section>
 
 <%- include("partials/footer") %>

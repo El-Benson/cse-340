@@ -1,9 +1,7 @@
 import "dotenv/config";
 import express from "express";
 
-import { getAllOrganizations } from "./src/models/organizations.js";
-import { getAllProjects } from "./src/models/projects.js";
-import { getAllCategories } from "./src/models/categories.js";
+import routes from "./src/routes.js";
 import { testConnection } from "./src/models/db.js";
 
 const app = express();
@@ -14,104 +12,19 @@ app.set("views", "./views");
 
 app.use(express.static("public"));
 
-// ============================================
-// HOME
-// ============================================
+app.use("/", routes);
 
-app.get("/", async (req, res) => {
-  const title = "Home";
+// 500 SERVER ERROR
+app.use((error, req, res, next) => {
+  console.error("Server error:", error);
 
-  res.render("index", {
-    title,
+  res.status(500).render("error", {
+    title: "Server Error",
+    message: "Something went wrong while processing your request.",
   });
 });
 
-// ============================================
-// ORGANIZATIONS
-// ============================================
-
-app.get("/organizations", async (req, res) => {
-  try {
-    const organizations = await getAllOrganizations();
-    const title = "Our Partner Organizations";
-
-    res.render("organizations", {
-      title,
-      organizations,
-    });
-  } catch (error) {
-    console.error("Error retrieving organizations:", error);
-
-    res.status(500).render("index", {
-      title: "Server Error",
-      error: "Unable to retrieve organizations.",
-    });
-  }
-});
-
-// ============================================
-// PROJECTS
-// ============================================
-
-app.get("/projects", async (req, res) => {
-  try {
-    const projects = await getAllProjects();
-    const title = "Service Projects";
-
-    res.render("projects", {
-      title,
-      projects,
-    });
-  } catch (error) {
-    console.error("Error retrieving projects:", error);
-
-    res.status(500).render("index", {
-      title: "Server Error",
-      error: "Unable to retrieve projects.",
-    });
-  }
-});
-
-// ============================================
-// CATEGORIES
-// ============================================
-
-app.get("/categories", async (req, res) => {
-  try {
-    const categories = await getAllCategories();
-    const title = "Categories";
-
-    res.render("categories", {
-      title,
-      categories,
-    });
-  } catch (error) {
-    console.error("Error retrieving categories:", error);
-
-    res.status(500).render("index", {
-      title: "Server Error",
-      error: "Unable to retrieve categories.",
-    });
-  }
-});
-
-// ============================================
-// 404 PAGE
-// ============================================
-
-app.use(async (req, res) => {
-  const title = "Page Not Found";
-
-  res.status(404).render("index", {
-    title,
-    notFound: true,
-  });
-});
-
-// ============================================
 // START SERVER
-// ============================================
-
 app.listen(port, async () => {
   try {
     await testConnection();

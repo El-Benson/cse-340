@@ -2,18 +2,27 @@
 
 <section class="page-header">
   <div>
-    <span class="eyebrow">SERVICE PROJECTS</span>
+    <span class="eyebrow">SERVICE CATEGORY</span>
 
-    <h1>Upcoming Service Projects</h1>
+    <h1><%= category.name %></h1>
 
     <p>
-      Discover upcoming service projects provided by organizations
-      serving their communities.
+      Explore service projects in the
+      <%= category.name.toLowerCase() %> category.
     </p>
   </div>
 </section>
 
 <section class="section">
+
+  <div class="page-header">
+    <div>
+      <span class="eyebrow">CATEGORY PROJECTS</span>
+
+      <h2>Projects in <%= category.name %></h2>
+    </div>
+  </div>
+
   <div class="project-list">
 
     <% if (projects.length > 0) { %>
@@ -22,17 +31,13 @@
 
         <article class="project-card">
 
-          <div class="project-category">
-            SERVICE PROJECT
-          </div>
-
           <div class="project-content">
 
-            <h2>
+            <h3>
               <a href="/project/<%= project.project_id %>">
                 <%= project.title %>
               </a>
-            </h2>
+            </h3>
 
             <p>
               <%= project.description %>
@@ -48,13 +53,6 @@
               <%= project.location %>
             </p>
 
-            <p>
-              <strong>Organization:</strong>
-              <a href="/organization/<%= project.organization_id %>">
-                <%= project.organization_name %>
-              </a>
-            </p>
-
           </div>
 
         </article>
@@ -64,12 +62,13 @@
     <% } else { %>
 
       <p>
-        No upcoming service projects are currently available.
+        No projects are currently assigned to this category.
       </p>
 
     <% } %>
 
   </div>
+
 </section>
 
 <%- include("partials/footer") %>

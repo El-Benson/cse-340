@@ -1,5 +1,5 @@
 -- ============================================
--- CSE 340 W02 DATABASE SETUP
+-- CSE 340 W03 DATABASE SETUP
 -- ============================================
 
 DROP TABLE IF EXISTS project_category;
@@ -28,9 +28,10 @@ CREATE TABLE organization (
 CREATE TABLE project (
     project_id SERIAL PRIMARY KEY,
     organization_id INTEGER NOT NULL,
-
-    name VARCHAR(150) NOT NULL,
+    title VARCHAR(150) NOT NULL,
     description TEXT NOT NULL,
+    date DATE NOT NULL,
+    location VARCHAR(255) NOT NULL,
 
     CONSTRAINT fk_project_organization
         FOREIGN KEY (organization_id)
@@ -103,37 +104,49 @@ VALUES
 -- ============================================
 
 INSERT INTO project
-    (organization_id, name, description)
+    (organization_id, title, description, date, location)
 VALUES
     (
         1,
         'Community Clean-Up',
-        'A volunteer project focused on cleaning public spaces and improving the local environment.'
+        'A volunteer project focused on cleaning public spaces and improving the local environment.',
+        '2026-09-20',
+        'Community Park'
     ),
     (
         1,
         'Community Construction Support',
-        'A service project providing volunteer assistance with community improvement and construction activities.'
+        'A service project providing volunteer assistance with community improvement and construction activities.',
+        '2026-09-27',
+        'Community Center'
     ),
     (
         2,
         'Urban Garden Project',
-        'A community gardening project that promotes food sustainability and hands-on learning.'
+        'A community gardening project that promotes food sustainability and hands-on learning.',
+        '2026-10-04',
+        'GreenHarvest Community Garden'
     ),
     (
         2,
         'Food Sustainability Workshop',
-        'An educational project teaching community members about sustainable food production.'
+        'An educational project teaching community members about sustainable food production.',
+        '2026-10-11',
+        'Community Learning Center'
     ),
     (
         3,
         'Community Food Support',
-        'A volunteer project designed to provide practical food assistance to community members.'
+        'A volunteer project designed to provide practical food assistance to community members.',
+        '2026-10-18',
+        'UnityServe Community Center'
     ),
     (
         3,
         'Healthy Community Outreach',
-        'A service project promoting healthy lifestyles and community wellness awareness.'
+        'A service project promoting healthy lifestyles and community wellness awareness.',
+        '2026-10-25',
+        'Community Health Center'
     );
 
 
