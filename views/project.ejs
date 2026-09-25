@@ -1,4 +1,4 @@
-<%- include("partials/header") %>
+﻿<%- include("partials/header") %>
 
 <section class="page-header">
   <div>
@@ -13,7 +13,6 @@
 </section>
 
 <section class="section">
-
   <article class="project-card">
 
     <div class="project-content">
@@ -37,10 +36,27 @@
         </a>
       </p>
 
+      <div class="page-actions">
+
+        <a
+          href="/edit-project/<%= project.project_id %>"
+          class="button"
+        >
+          Edit Project
+        </a>
+
+        <a
+          href="/assign-categories/<%= project.project_id %>"
+          class="button"
+        >
+          Edit Categories
+        </a>
+
+      </div>
+
     </div>
 
   </article>
-
 </section>
 
 <section class="section">
@@ -48,7 +64,6 @@
   <div class="page-header">
     <div>
       <span class="eyebrow">PROJECT CATEGORIES</span>
-
       <h2>Categories</h2>
     </div>
   </div>

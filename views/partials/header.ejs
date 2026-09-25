@@ -24,5 +24,13 @@
     </header>
 
     <main>
-  
 
+      <% const messages = flash(); %>
+
+      <% Object.entries(messages).forEach(([type, messageList]) => { %>
+        <% messageList.forEach((message) => { %>
+          <div class="alert <%= type %>" role="alert">
+            <%= message %>
+          </div>
+        <% }) %>
+      <% }) %>

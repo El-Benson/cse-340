@@ -1,14 +1,23 @@
-<%- include("partials/header") %>
+﻿<%- include("partials/header") %>
 
 <section class="page-header">
   <div>
-    <span class="eyebrow">PARTNER ORGANIZATION</span>
+    <span class="eyebrow">ORGANIZATION</span>
 
     <h1><%= organization.name %></h1>
 
     <p>
       <%= organization.description %>
     </p>
+
+    <div class="page-actions">
+      <a
+        href="/edit-organization/<%= organization.organization_id %>"
+        class="button"
+      >
+        Edit Organization
+      </a>
+    </div>
   </div>
 </section>
 
@@ -16,19 +25,12 @@
 
   <article class="organization-card">
 
-    <div class="organization-image">
-      <img
-        src="/images/<%= organization.logo_filename %>"
-        alt="<%= organization.name %> logo"
-      >
-    </div>
-
     <div class="organization-content">
 
-      <h2>Organization Information</h2>
+      <h2>Organization Details</h2>
 
       <p>
-        <strong>Contact:</strong>
+        <strong>Contact Email:</strong>
         <%= organization.contact_email %>
       </p>
 
@@ -43,8 +45,7 @@
   <div class="page-header">
     <div>
       <span class="eyebrow">SERVICE PROJECTS</span>
-
-      <h2>Projects by <%= organization.name %></h2>
+      <h2>Projects</h2>
     </div>
   </div>
 
@@ -87,7 +88,7 @@
     <% } else { %>
 
       <p>
-        No service projects are currently listed for this organization.
+        No service projects are currently associated with this organization.
       </p>
 
     <% } %>

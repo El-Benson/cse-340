@@ -1,0 +1,86 @@
+﻿<%- include("partials/header") %>
+
+<section class="page-header">
+  <div>
+    <span class="eyebrow">PROJECT CATEGORIES</span>
+
+    <h1>Edit Categories</h1>
+
+    <p>
+      Choose the categories that apply to
+      <strong><%= projectDetails.title %></strong>.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+
+  <div class="form-container">
+
+    <form
+      action="/assign-categories/<%= projectId %>"
+      method="POST"
+    >
+
+      <div class="form-group">
+
+        <h2>Select Categories</h2>
+
+        <% if (categories.length > 0) { %>
+
+          <% categories.forEach((category) => { %>
+
+            <div class="checkbox-group">
+
+              <label>
+                <input
+                  type="checkbox"
+                  name="categoryIds"
+                  value="<%= category.category_id %>"
+                  <%=
+                    assignedCategories.some(
+                      (assignedCategory) =>
+                        assignedCategory.category_id ===
+                        category.category_id
+                    )
+                      ? "checked"
+                      : ""
+                  %>
+                />
+
+                <%= category.name %>
+              </label>
+
+            </div>
+
+          <% }) %>
+
+        <% } else { %>
+
+          <p>
+            No categories are currently available.
+          </p>
+
+        <% } %>
+
+      </div>
+
+      <div class="form-actions">
+
+        <button type="submit">
+          Save Categories
+        </button>
+
+        <a href="/project/<%= projectId %>">
+          Cancel
+        </a>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</section>
+
+<%- include("partials/footer") %>

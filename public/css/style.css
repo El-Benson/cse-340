@@ -369,3 +369,145 @@ main {
   height: auto;
   object-fit: contain;
 }
+
+/* FLASH MESSAGES */
+
+.alert {
+  max-width: 1180px;
+  margin: 20px auto;
+  padding: 14px 18px;
+  border-radius: 6px;
+  font-weight: bold;
+  border: 1px solid var(--border);
+}
+
+.alert.success {
+  background: #e8f5e9;
+  color: #256029;
+  border-color: #a5d6a7;
+}
+
+.alert.error {
+  background: #ffebee;
+  color: #b71c1c;
+  border-color: #ef9a9a;
+}
+
+.alert.warning {
+  background: #fff8e1;
+  color: #8d6e00;
+  border-color: #ffe082;
+}
+
+.alert.info {
+  background: #e3f2fd;
+  color: #0d47a1;
+  border-color: #90caf9;
+}
+
+/* FORM PAGES */
+
+.form-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+.form-container {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 35px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.form-container h1 {
+  margin-top: 0;
+}
+
+.form-group {
+  margin-bottom: 22px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font: inherit;
+}
+
+.form-group textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: 2px solid var(--blue);
+  outline-offset: 1px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.form-actions button {
+  background: var(--blue-dark);
+  color: var(--white);
+  border: none;
+  padding: 12px 22px;
+  border-radius: 6px;
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.form-actions button:hover {
+  background: var(--blue);
+}
+
+.form-actions a {
+  color: var(--blue-dark);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.form-actions a:hover {
+  text-decoration: underline;
+}
+
+.page-actions {
+  margin-top: 25px;
+}
+
+.page-actions .button {
+  background: var(--white);
+  color: var(--blue-dark);
+}
+
+.page-actions .button:hover {
+  background: var(--background);
+}
+
+@media (max-width: 700px) {
+  .alert {
+    margin: 15px 20px;
+  }
+
+  .form-container {
+    padding: 25px 20px;
+  }
+}

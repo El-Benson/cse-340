@@ -1,56 +1,61 @@
-<%- include("partials/header") %>
+﻿<%- include("partials/header") %>
 
 <section class="page-header">
   <div>
-    <span class="eyebrow">SERVICE ORGANIZATIONS</span>
+    <span class="eyebrow">ORGANIZATIONS</span>
 
-    <h1>Organizations Making a Difference</h1>
+    <h1>Our Partner Organizations</h1>
 
     <p>
-      Discover organizations working to support communities, education,
-      environmental awareness, and meaningful service.
+      Discover organizations providing meaningful service opportunities
+      in their communities.
     </p>
+
+    <div class="page-actions">
+      <a href="/new-organization" class="button">
+        Create New Organization
+      </a>
+    </div>
   </div>
 </section>
 
 <section class="section">
   <div class="card-grid">
 
-    <% organizations.forEach((organization) => { %>
+    <% if (organizations.length > 0) { %>
 
-      <article class="organization-card">
+      <% organizations.forEach((organization) => { %>
 
-        <div class="organization-image">
-          <img
-            src="/images/<%= organization.logo_filename %>"
-            alt="<%= organization.name %> logo"
-          >
-        </div>
+        <article class="organization-card">
 
-        <div class="organization-content">
+          <div class="organization-content">
 
-          <span class="eyebrow">PARTNER ORGANIZATION</span>
+            <h2>
+              <a href="/organization/<%= organization.organization_id %>">
+                <%= organization.name %>
+              </a>
+            </h2>
 
-          <h2>
-            <a href="/organization/<%= organization.organization_id %>">
-              <%= organization.name %>
-            </a>
-          </h2>
+            <p>
+              <%= organization.description %>
+            </p>
 
-          <p>
-            <%= organization.description %>
-          </p>
+            <p>
+              <strong>Contact:</strong>
+              <%= organization.contact_email %>
+            </p>
 
-          <p>
-            <strong>Contact:</strong>
-            <%= organization.contact_email %>
-          </p>
+          </div>
 
-        </div>
+        </article>
 
-      </article>
+      <% }) %>
 
-    <% }) %>
+    <% } else { %>
+
+      <p>No organizations are currently available.</p>
+
+    <% } %>
 
   </div>
 </section>

@@ -1,49 +1,57 @@
-<%- include("partials/header") %>
+﻿<%- include("partials/header") %>
 
 <section class="page-header">
   <div>
-    <span class="eyebrow">SERVICE CATEGORIES</span>
+    <span class="eyebrow">CATEGORIES</span>
 
-    <h1>Explore Project Categories</h1>
+    <h1>Service Project Categories</h1>
 
     <p>
-      Browse the different categories of service projects available through
-      our partner organizations.
+      Browse service projects by category.
     </p>
+
+    <div class="page-actions">
+      <a href="/new-category" class="button">
+        Create New Category
+      </a>
+    </div>
   </div>
 </section>
 
 <section class="section">
+
   <div class="card-grid">
 
-    <% categories.forEach((category) => { %>
+    <% if (categories.length > 0) { %>
 
-      <article class="category-card">
+      <% categories.forEach((category) => { %>
 
-        <div class="category-content">
+        <article class="category-card">
 
-          <span class="eyebrow">
-            CATEGORY
-          </span>
+          <div class="category-content">
 
-          <h2>
-            <a href="/category/<%= category.category_id %>">
-              <%= category.name %>
-            </a>
-          </h2>
+            <h2>
+              <a href="/category/<%= category.category_id %>">
+                <%= category.name %>
+              </a>
+            </h2>
 
-          <p>
-            Explore service projects in the
-            <%= category.name.toLowerCase() %> category.
-          </p>
+          </div>
 
-        </div>
+        </article>
 
-      </article>
+      <% }) %>
 
-    <% }) %>
+    <% } else { %>
+
+      <p>
+        No categories are currently available.
+      </p>
+
+    <% } %>
 
   </div>
+
 </section>
 
 <%- include("partials/footer") %>

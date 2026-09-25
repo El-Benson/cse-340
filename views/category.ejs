@@ -1,15 +1,19 @@
-<%- include("partials/header") %>
+﻿<%- include("partials/header") %>
 
 <section class="page-header">
   <div>
-    <span class="eyebrow">SERVICE CATEGORY</span>
+    <span class="eyebrow">CATEGORY</span>
 
     <h1><%= category.name %></h1>
 
-    <p>
-      Explore service projects in the
-      <%= category.name.toLowerCase() %> category.
-    </p>
+    <div class="page-actions">
+      <a
+        href="/edit-category/<%= category.category_id %>"
+        class="button"
+      >
+        Edit Category
+      </a>
+    </div>
   </div>
 </section>
 
@@ -17,9 +21,8 @@
 
   <div class="page-header">
     <div>
-      <span class="eyebrow">CATEGORY PROJECTS</span>
-
-      <h2>Projects in <%= category.name %></h2>
+      <span class="eyebrow">SERVICE PROJECTS</span>
+      <h2>Projects in this Category</h2>
     </div>
   </div>
 
@@ -62,7 +65,7 @@
     <% } else { %>
 
       <p>
-        No projects are currently assigned to this category.
+        No service projects are currently assigned to this category.
       </p>
 
     <% } %>
