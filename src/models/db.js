@@ -2,7 +2,10 @@ import { Pool } from "pg";
 
 const pool = new Pool({
   connectionString: process.env.DB_URL,
-  ssl: true,
+  ssl:
+    process.env.NODE_ENV === "production"
+      ? { rejectUnauthorized: false }
+      : false,
 });
 
 let db = null;
@@ -47,7 +50,10 @@ const testConnection = async () => {
   try {
     const result = await db.query("SELECT NOW() as current_time");
 
-    console.log("Database connection successful:", result.rows[0].current_time);
+    console.log(
+      "Database connection successful:",
+      result.rows[0].current_time
+    );
 
     return true;
   } catch (error) {

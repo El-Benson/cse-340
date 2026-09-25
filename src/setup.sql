@@ -106,6 +106,7 @@ VALUES
 INSERT INTO project
     (organization_id, title, description, date, location)
 VALUES
+    -- BrightFuture Builders
     (
         1,
         'Community Clean-Up',
@@ -121,6 +122,29 @@ VALUES
         'Community Center'
     ),
     (
+        1,
+        'Neighborhood Renovation Day',
+        'A community project helping volunteers improve and maintain shared neighborhood spaces.',
+        '2026-11-01',
+        'Neighborhood Community Hall'
+    ),
+    (
+        1,
+        'Community Center Repair',
+        'A volunteer construction project supporting repairs and improvements at a local community center.',
+        '2026-11-08',
+        'Community Center'
+    ),
+    (
+        1,
+        'Safe Playground Improvement',
+        'A service project focused on improving a public playground for children and families.',
+        '2026-11-15',
+        'Community Playground'
+    ),
+
+    -- GreenHarvest Growers
+    (
         2,
         'Urban Garden Project',
         'A community gardening project that promotes food sustainability and hands-on learning.',
@@ -135,6 +159,29 @@ VALUES
         'Community Learning Center'
     ),
     (
+        2,
+        'Community Garden Expansion',
+        'A volunteer project expanding garden space for local food production and community participation.',
+        '2026-11-22',
+        'GreenHarvest Community Garden'
+    ),
+    (
+        2,
+        'Seed and Compost Training',
+        'An educational project teaching volunteers how to prepare seeds and compost for community gardens.',
+        '2026-11-29',
+        'GreenHarvest Learning Center'
+    ),
+    (
+        2,
+        'Neighborhood Food Growing Day',
+        'A community project encouraging residents to grow fresh food in shared neighborhood spaces.',
+        '2026-12-06',
+        'Neighborhood Garden'
+    ),
+
+    -- UnityServe Volunteers
+    (
         3,
         'Community Food Support',
         'A volunteer project designed to provide practical food assistance to community members.',
@@ -147,6 +194,27 @@ VALUES
         'A service project promoting healthy lifestyles and community wellness awareness.',
         '2026-10-25',
         'Community Health Center'
+    ),
+    (
+        3,
+        'Volunteer Resource Drive',
+        'A community service project collecting useful resources for families and local community programs.',
+        '2026-12-13',
+        'UnityServe Community Center'
+    ),
+    (
+        3,
+        'Senior Support Day',
+        'A volunteer project providing practical assistance and community support for older residents.',
+        '2026-12-20',
+        'UnityServe Community Center'
+    ),
+    (
+        3,
+        'Community Wellness Fair',
+        'A community event promoting health awareness and access to local wellness information.',
+        '2026-12-27',
+        'Community Recreation Center'
     );
 
 
@@ -169,16 +237,35 @@ VALUES
 INSERT INTO project_category
     (project_id, category_id)
 VALUES
+    -- BrightFuture Builders
     (1, 1),
     (1, 3),
     (2, 3),
-    (3, 1),
-    (3, 2),
-    (4, 2),
+    (3, 3),
+    (4, 3),
     (5, 3),
-    (5, 4),
-    (6, 4),
-    (6, 3);
+
+    -- GreenHarvest Growers
+    (6, 1),
+    (6, 2),
+    (7, 2),
+    (8, 1),
+    (8, 3),
+    (9, 1),
+    (9, 2),
+    (10, 1),
+    (10, 3),
+
+    -- UnityServe Volunteers
+    (11, 3),
+    (11, 4),
+    (12, 3),
+    (12, 4),
+    (13, 3),
+    (14, 3),
+    (14, 4),
+    (15, 3),
+    (15, 4);
 
 
 -- ============================================
