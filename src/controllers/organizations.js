@@ -12,8 +12,8 @@ const DEFAULT_LOGO = "cse340-service-network.png";
 
 const AVAILABLE_LOGOS = [
   "cse340-service-network.png",
-  "brightfure-logo.png",
-  "greenharvest-logo.ong",
+  "brightfuture-logo.png",
+  "greenharvest-logo.png",
   "unityserve-logo.png",
 ];
 
