@@ -1,4 +1,5 @@
 import "dotenv/config";
+import bcrypt from "bcrypt";
 import db from "./src/models/db.js";
 
 try {
@@ -25,7 +26,29 @@ try {
     );
   `);
 
+  const passwordHash = await bcrypt.hash("cse340!", 10);
+
+  await db.query(
+    `
+      INSERT INTO users
+        (name, email, password_hash, role_id)
+      VALUES
+        (
+          'Admin User',
+          'admin@example.com',
+          $1,
+          (SELECT role_id FROM roles WHERE role_name = 'admin')
+        )
+      ON CONFLICT (email)
+      DO UPDATE SET
+        password_hash = EXCLUDED.password_hash,
+        role_id = EXCLUDED.role_id;
+    `,
+    [passwordHash]
+  );
+
   console.log("Authentication tables are ready.");
+  console.log("Grading admin account is ready.");
 } catch (error) {
   console.error("Authentication database setup failed:", error);
   process.exit(1);
