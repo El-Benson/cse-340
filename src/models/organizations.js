@@ -53,7 +53,8 @@ const getProjectsByOrganization = async (id) => {
 const createOrganization = async (
   name,
   description,
-  contactEmail
+  contactEmail,
+  logoFilename
 ) => {
   const query = `
     INSERT INTO public.organization
@@ -66,7 +67,7 @@ const createOrganization = async (
     name,
     description,
     contactEmail,
-    "",
+    logoFilename,
   ];
 
   const result = await db.query(query, queryParams);
@@ -82,15 +83,17 @@ const updateOrganization = async (
   organizationId,
   name,
   description,
-  contactEmail
+  contactEmail,
+  logoFilename
 ) => {
   const query = `
     UPDATE public.organization
     SET
       name = $1,
       description = $2,
-      contact_email = $3
-    WHERE organization_id = $4
+      contact_email = $3,
+      logo_filename = $4
+    WHERE organization_id = $5
     RETURNING organization_id;
   `;
 
@@ -98,6 +101,7 @@ const updateOrganization = async (
     name,
     description,
     contactEmail,
+    logoFilename,
     organizationId,
   ];
 

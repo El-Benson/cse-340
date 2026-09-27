@@ -48,6 +48,25 @@
         />
       </div>
 
+      <div class="form-group">
+        <label for="logoFilename">Organization Image</label>
+
+        <select
+          id="logoFilename"
+          name="logoFilename"
+          required
+        >
+          <% logos.forEach((logo) => { %>
+            <option
+              value="<%= logo %>"
+              <%= logo === organization.logo_filename ? "selected" : "" %>
+            >
+              <%= logo %>
+            </option>
+          <% }) %>
+        </select>
+      </div>
+
       <div class="form-actions">
 
         <button type="submit">

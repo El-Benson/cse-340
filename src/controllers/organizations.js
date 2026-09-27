@@ -8,6 +8,15 @@ import {
   updateOrganization,
 } from "../models/organizations.js";
 
+const DEFAULT_LOGO = "cse340-service-network.png";
+
+const AVAILABLE_LOGOS = [
+  "cse340-service-network.png",
+  "brightfure-logo.png",
+  "greenharvest-logo.ong",
+  "unityserve-logo.png",
+];
+
 // Validation rules for creating and editing an organization
 const organizationValidation = [
   body("name")
@@ -38,6 +47,11 @@ const organizationValidation = [
     .withMessage(
       "Contact email cannot exceed 255 characters."
     ),
+
+  body("logoFilename")
+    .optional()
+    .isIn(AVAILABLE_LOGOS)
+    .withMessage("Please select a valid organization image."),
 ];
 
 const showOrganizationsPage = async (req, res, next) => {
@@ -85,6 +99,8 @@ const showOrganizationDetailsPage = async (req, res, next) => {
 const showNewOrganizationForm = (req, res) => {
   res.render("new-organization", {
     title: "Create New Organization",
+    logos: AVAILABLE_LOGOS,
+    defaultLogo: DEFAULT_LOGO,
   });
 };
 
@@ -111,7 +127,8 @@ const processNewOrganizationForm = async (req, res, next) => {
       await createOrganization(
         name,
         description,
-        contactEmail
+        contactEmail,
+        DEFAULT_LOGO
       );
 
     req.flash(
@@ -150,6 +167,7 @@ const showEditOrganizationForm = async (
     res.render("edit-organization", {
       title: `Edit ${organization.name}`,
       organization,
+      logos: AVAILABLE_LOGOS,
     });
   } catch (error) {
     next(error);
@@ -168,6 +186,7 @@ const processEditOrganizationForm = async (
     name,
     description,
     contactEmail,
+    logoFilename,
   } = req.body;
 
   const errors = validationResult(req);
@@ -187,7 +206,8 @@ const processEditOrganizationForm = async (
       organizationId,
       name,
       description,
-      contactEmail
+      contactEmail,
+      logoFilename || DEFAULT_LOGO
     );
 
     req.flash(

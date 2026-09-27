@@ -43,6 +43,27 @@
         />
       </div>
 
+      <div class="form-group">
+        <label for="logoFilename">Organization Image</label>
+        <select
+          id="logoFilename"
+          name="logoFilename"
+        >
+          <% logos.forEach((logo) => { %>
+            <option
+              value="<%= logo %>"
+              <%= logo === defaultLogo ? "selected" : "" %>
+            >
+              <%= logo %>
+            </option>
+          <% }) %>
+        </select>
+
+        <p>
+          A placeholder image is assigned automatically when the organization is created.
+        </p>
+      </div>
+
       <div class="form-actions">
         <button type="submit">
           Create Organization
