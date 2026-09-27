@@ -1,0 +1,65 @@
+<%- include("partials/header") %>
+
+<section class="page-header">
+  <div>
+    <span class="eyebrow">DASHBOARD</span>
+    <h1>Welcome, <%= user.name %></h1>
+    <p>Manage your Service Project Hub account and access available features.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="card-grid">
+
+    <article class="card">
+      <h2>Account Information</h2>
+
+      <p>
+        <strong>Name:</strong>
+        <%= user.name %>
+      </p>
+
+      <p>
+        <strong>Email:</strong>
+        <%= user.email %>
+      </p>
+
+      <p>
+        <strong>Role:</strong>
+        <%= user.role_name %>
+      </p>
+    </article>
+
+    <article class="card">
+      <h2>Service Projects</h2>
+
+      <p>
+        Browse organizations and service projects available through the
+        Service Project Hub.
+      </p>
+
+      <a href="/organizations" class="button">
+        View Organizations
+      </a>
+    </article>
+
+    <% if (user.role_name === "admin") { %>
+
+      <article class="card">
+        <h2>Administration</h2>
+
+        <p>
+          Manage registered users and administrator-only features.
+        </p>
+
+        <a href="/users" class="button">
+          View Registered Users
+        </a>
+      </article>
+
+    <% } %>
+
+  </div>
+</section>
+
+<%- include("partials/footer") %>

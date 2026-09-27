@@ -1,0 +1,49 @@
+<%- include("partials/header") %>
+
+<section class="page-header">
+  <div>
+    <span class="eyebrow">ADMINISTRATION</span>
+    <h1>Registered Users</h1>
+    <p>View registered users and their assigned roles.</p>
+  </div>
+</section>
+
+<section class="section">
+
+  <div class="table-container">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% if (users.length > 0) { %>
+
+          <% users.forEach(user => { %>
+            <tr>
+              <td><%= user.name %></td>
+              <td><%= user.email %></td>
+              <td><%= user.role_name %></td>
+            </tr>
+          <% }) %>
+
+        <% } else { %>
+
+          <tr>
+            <td colspan="3">
+              No registered users found.
+            </td>
+          </tr>
+
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+
+</section>
+
+<%- include("partials/footer") %>

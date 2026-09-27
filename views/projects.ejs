@@ -11,11 +11,14 @@
       serving their communities.
     </p>
 
-    <div class="page-actions">
-      <a href="/new-project" class="button">
-        Create New Service Project
-      </a>
-    </div>
+    <% if (user && user.role_name === "admin") { %>
+      <div class="page-actions">
+        <a href="/new-project" class="button">
+          Create New Service Project
+        </a>
+      </div>
+    <% } %>
+
   </div>
 </section>
 

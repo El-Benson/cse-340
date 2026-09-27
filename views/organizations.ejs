@@ -1,4 +1,4 @@
-﻿<%- include("partials/header") %>
+<%- include("partials/header") %>
 
 <section class="page-header">
   <div>
@@ -11,11 +11,14 @@
       in their communities.
     </p>
 
-    <div class="page-actions">
-      <a href="/new-organization" class="button">
-        Create New Organization
-      </a>
-    </div>
+    <% if (user && user.role_name === "admin") { %>
+      <div class="page-actions">
+        <a href="/new-organization" class="button">
+          Create New Organization
+        </a>
+      </div>
+    <% } %>
+
   </div>
 </section>
 

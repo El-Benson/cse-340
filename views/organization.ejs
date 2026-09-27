@@ -1,4 +1,4 @@
-﻿<%- include("partials/header") %>
+<%- include("partials/header") %>
 
 <section class="page-header">
   <div>
@@ -10,14 +10,17 @@
       <%= organization.description %>
     </p>
 
-    <div class="page-actions">
-      <a
-        href="/edit-organization/<%= organization.organization_id %>"
-        class="button"
-      >
-        Edit Organization
-      </a>
-    </div>
+    <% if (user && user.role_name === "admin") { %>
+      <div class="page-actions">
+        <a
+          href="/edit-organization/<%= organization.organization_id %>"
+          class="button"
+        >
+          Edit Organization
+        </a>
+      </div>
+    <% } %>
+
   </div>
 </section>
 

@@ -31,6 +31,13 @@ app.use(
 
 app.use(flash);
 
+// Make authentication state available to all EJS views
+app.use((req, res, next) => {
+  res.locals.isLoggedIn = !!req.session.user;
+  res.locals.user = req.session.user || null;
+  next();
+});
+
 app.use(express.static("public"));
 
 app.use("/", routes);
@@ -59,3 +66,4 @@ app.listen(port, async () => {
 });
 
 console.log("CSE 340 server file has started.");
+

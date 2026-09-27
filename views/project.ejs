@@ -1,4 +1,4 @@
-﻿<%- include("partials/header") %>
+<%- include("partials/header") %>
 
 <section class="page-header">
   <div>
@@ -36,23 +36,25 @@
         </a>
       </p>
 
-      <div class="page-actions">
+      <% if (user && user.role_name === "admin") { %>
+        <div class="page-actions">
 
-        <a
-          href="/edit-project/<%= project.project_id %>"
-          class="button"
-        >
-          Edit Project
-        </a>
+          <a
+            href="/edit-project/<%= project.project_id %>"
+            class="button"
+          >
+            Edit Project
+          </a>
 
-        <a
-          href="/assign-categories/<%= project.project_id %>"
-          class="button"
-        >
-          Edit Categories
-        </a>
+          <a
+            href="/assign-categories/<%= project.project_id %>"
+            class="button"
+          >
+            Edit Categories
+          </a>
 
-      </div>
+        </div>
+      <% } %>
 
     </div>
 
