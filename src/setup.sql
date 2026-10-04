@@ -2,6 +2,7 @@
 -- CSE 340 W03 DATABASE SETUP
 -- ============================================
 
+DROP TABLE IF EXISTS volunteer;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS roles;
 DROP TABLE IF EXISTS project_category;
@@ -75,6 +76,20 @@ CREATE TABLE project (
 -- CATEGORY TABLE
 -- ============================================
 
+
+CREATE TABLE volunteer (
+    volunteer_id SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL,
+    project_id INTEGER NOT NULL,
+    volunteer_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id)
+        REFERENCES users (user_id)
+        ON DELETE CASCADE,
+    FOREIGN KEY (project_id)
+        REFERENCES project (project_id)
+        ON DELETE CASCADE,
+    UNIQUE (user_id, project_id)
+);
 CREATE TABLE category (
     category_id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL UNIQUE
@@ -307,3 +322,4 @@ SELECT * FROM organization;
 SELECT * FROM project;
 SELECT * FROM category;
 SELECT * FROM project_category;
+

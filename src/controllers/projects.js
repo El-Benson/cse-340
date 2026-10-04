@@ -9,6 +9,7 @@ import {
 } from "../models/projects.js";
 
 import { getAllOrganizations } from "../models/organizations.js";
+import { isVolunteer } from "../models/volunteers.js";
 
 const NUMBER_OF_UPCOMING_PROJECTS = 5;
 
@@ -76,10 +77,20 @@ const showProjectDetailsPage = async (req, res, next) => {
 
     const categories = await getCategoriesByProject(projectId);
 
+    let volunteerStatus = false;
+
+    if (req.session.user) {
+      volunteerStatus = await isVolunteer(
+        req.session.user.user_id,
+        projectId
+      );
+    }
+
     res.render("project", {
       title: project.title,
       project,
       categories,
+      volunteerStatus,
     });
   } catch (error) {
     next(error);

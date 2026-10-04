@@ -62,4 +62,88 @@
   </div>
 </section>
 
+
+<section class="section">
+
+  <div class="page-header">
+    <div>
+      <span class="eyebrow">MY VOLUNTEER PROJECTS</span>
+      <h2>Projects I'm Volunteering For</h2>
+      <p>Service projects you have chosen to volunteer for.</p>
+    </div>
+  </div>
+
+  <% if (volunteeredProjects && volunteeredProjects.length > 0) { %>
+
+    <div class="card-grid">
+
+      <% volunteeredProjects.forEach((project) => { %>
+
+        <article class="project-card">
+
+          <div class="project-content">
+
+            <h3>
+              <a href="/project/<%= project.project_id %>">
+                <%= project.title %>
+              </a>
+            </h3>
+
+            <p>
+              <strong>Date:</strong>
+              <%= project.date %>
+            </p>
+
+            <p>
+              <strong>Location:</strong>
+              <%= project.location %>
+            </p>
+
+            <p>
+              <strong>Organization:</strong>
+              <%= project.organization_name %>
+            </p>
+
+            <div class="page-actions">
+
+              <a
+                href="/project/<%= project.project_id %>"
+                class="button"
+              >
+                View Project
+              </a>
+
+              <form
+                action="/remove-volunteer/<%= project.project_id %>"
+                method="POST"
+              >
+                <button type="submit" class="button">
+                  Remove Volunteer
+                </button>
+              </form>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      <% }) %>
+
+    </div>
+
+  <% } else { %>
+
+    <p>
+      You are not currently volunteering for any service projects.
+    </p>
+
+    <a href="/projects" class="button">
+      Browse Service Projects
+    </a>
+
+  <% } %>
+
+</section>
 <%- include("partials/footer") %>
+

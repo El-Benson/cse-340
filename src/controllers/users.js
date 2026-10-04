@@ -1,4 +1,5 @@
 import bcrypt from "bcrypt";
+import { getVolunteeredProjects } from "../models/volunteers.js";
 import {
   createUser,
   authenticateUser,
@@ -140,11 +141,20 @@ const requireRole = (role) => {
   };
 };
 
-const showDashboard = async (req, res) => {
-  res.render("dashboard", {
-    title: "Dashboard",
-    user: req.session.user,
-  });
+const showDashboard = async (req, res, next) => {
+  try {
+    const volunteeredProjects = await getVolunteeredProjects(
+      req.session.user.user_id
+    );
+
+    res.render("dashboard", {
+      title: "Dashboard",
+      user: req.session.user,
+      volunteeredProjects,
+    });
+  } catch (error) {
+    next(error);
+  }
 };
 
 const showUsersPage = async (req, res) => {
@@ -178,3 +188,4 @@ export {
   showDashboard,
   showUsersPage,
 };
+

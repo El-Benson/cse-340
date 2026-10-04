@@ -44,6 +44,11 @@ import {
   showUsersPage,
 } from "./controllers/users.js";
 
+import {
+  processAddVolunteer,
+  processRemoveVolunteer,
+} from "./controllers/volunteers.js";
+
 const router = express.Router();
 
 // HOME
@@ -102,6 +107,20 @@ router.post(
   requireRole("admin"),
   organizationValidation,
   processEditOrganizationForm
+);
+
+
+// VOLUNTEERING - LOGGED-IN USERS
+router.post(
+  "/volunteer/:projectId",
+  requireLogin,
+  processAddVolunteer
+);
+
+router.post(
+  "/remove-volunteer/:projectId",
+  requireLogin,
+  processRemoveVolunteer
 );
 
 // PROJECTS
@@ -190,3 +209,7 @@ router.use((req, res) => {
 });
 
 export default router;
+
+
+
+
